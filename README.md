@@ -47,5 +47,5 @@ $ node ./exec -c api
 Clean and stop all containers.
 
 ```
-$ node ./process
+$ node ./clean
 ```
