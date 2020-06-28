@@ -1,8 +1,8 @@
 ### app-compose-template
 
-Docker-compose and local environment helper scripts.
+Docker and local environment helper scripts.
 
-## Clone repositories
+## Clone
 
 Clone the ui template and the service template.
 
@@ -18,7 +18,7 @@ Run yarn on the workspace.
 $ yarn
 ```
 
-## Launch docker
+## Launch
 
 Launch node servers in docker.
 
@@ -26,7 +26,7 @@ Launch node servers in docker.
 $ node ./launch
 ```
 
-## Check processes
+## Check
 
 Check processes in docker.
 
