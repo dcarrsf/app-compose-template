@@ -1,0 +1,20 @@
+{
+  "name": "app-compose-template",
+  "version": "1.0.0",
+  "description": "docker-compose and local env helper scripts",
+  "author": "Dan Carr",
+  "keywords": [
+    "docker",
+    "nginx",
+    "local",
+    "compose"
+  ],
+  "dependencies": {
+    "chalk": "4.1.0",
+    "colors": "1.4.0",
+    "commander": "5.1.0",
+    "lodash": "4.17.15",
+    "shelljs": "0.8.4"
+  },
+  "license": "MIT"
+}

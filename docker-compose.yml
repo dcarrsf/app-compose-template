@@ -1,0 +1,73 @@
+version: '3.2'
+services:
+    ui:
+        build: ./app-ui-template
+        volumes:
+            - ./app-ui-template/src:/opt/app/src
+        ports:
+            - 8888:8888
+        command: yarn dev
+        tty: true
+    api:
+        build: ./app-api-template
+        volumes:
+            - ./app-api-template/src:/opt/app/src
+        ports:
+            - 8585:8585
+        command: yarn dev
+        tty: true
+    nginx: 
+        image: nginx:latest
+        volumes:
+            - ./config/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - 8080:8080
+            - 8443:8443
+    mongo:
+        image: mongo:latest
+        environment:
+            - MONGO_INITDB_DATABASE=api
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=password
+        volumes:
+            - ./config/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+            - ./volumes/mongo:/data/db
+        ports:
+            - 27017:27017
+        tty: true
+    redis:
+        image: redis:alpine
+        environment:
+            - REDIS_REPLICATION_MODE=master
+        volumes:
+            - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+            - ./volumes/redis:/var/lib/redis
+        ports:
+            - 6379:6379
+        command: redis-server
+    elasticsearch:
+        image: elasticsearch:7.4.0
+        environment:
+            - xpack.security.enabled=false
+            - discovery.type=single-node
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65536
+                hard: 65536
+        cap_add:
+            - IPC_LOCK
+        volumes:
+            - ./volumes/elasticsearch:/usr/share/elasticsearch/data
+        ports:
+            - 9200:9200
+    kibana:
+        image: kibana:7.4.0
+        environment:
+            - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+        ports:
+            - 5601:5601
+        depends_on:
+            - elasticsearch

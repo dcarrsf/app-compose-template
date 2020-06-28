@@ -1,0 +1,5 @@
+node_modules/
+volumes/
+mongo-volume
+app-*/
+.DS_Store
