@@ -4,7 +4,7 @@ Docker and local environment helper scripts.
 
 ## Clone
 
-Clone the ui template and the service template.
+Clone the ui template and the api template.
 
 ```
 $ node ./clone
