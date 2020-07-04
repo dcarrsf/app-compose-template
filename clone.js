@@ -5,7 +5,7 @@ const path = require('path');
 const shell = require('shelljs');
 
 const repos = [
-  { dir: 'app-service-template', repo: 'git@github.com/dcarrsf/app-service-template.git' },
+  { dir: 'app-api-template', repo: 'git@github.com/dcarrsf/app-api-template.git' },
   { dir: 'app-ui-template', repo: 'git@github.com/dcarrsf/app-ui-template.git' }
 ];
 
@@ -19,7 +19,6 @@ const neededRepos = _.filter(repos, repo => localRepos.includes(repo.dir));
 
 _.forEach(neededRepos, repo => {
   const { dir, repo: remote } = repo;
-  console.log(chalk.orange(`Cloning ${remote}...`));
   shell.exec(`git clone --quiet ${remote}`);
   console.log(chalk.orange(`Cloning complete for ${remote}...`));
   if (shell.test('-e', path.join(dir, 'package.json'))) {
