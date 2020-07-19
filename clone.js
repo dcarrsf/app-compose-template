@@ -1,6 +1,7 @@
 #!/user/bin/env node
 
 const _ = require('lodash');
+const chalk = require('chalk');
 const path = require('path');
 const shell = require('shelljs');
 
